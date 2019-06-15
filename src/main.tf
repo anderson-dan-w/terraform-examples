@@ -8,8 +8,8 @@ provider "aws" {
 }
 
 
-resource "aws_security_group" "instance" {
-  name = "dan-tf-http-sg"
+resource "aws_security_group" "http-sg" {
+  name = "dan-tf-http-sg-2"
   ingress {
     from_port = "${var.server_port}"
     to_port = "${var.server_port}"
@@ -21,7 +21,7 @@ resource "aws_security_group" "instance" {
 resource "aws_instance" "dan-tf" {
   ami = "ami-005bdb005fb00e791"
   instance_type = "t2.micro"
-  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
+  vpc_security_group_ids = ["${aws_security_group.http-sg.id}"]
 
   user_data = <<-EOF
               #!/bin/bash
