@@ -33,3 +33,7 @@ resource "aws_instance" "dan-tf" {
     Name = "dan-tf-example"
   }
 }
+
+output "public_ip" {
+  value = "${aws_instance.dan-tf.public_ip}"
+}
